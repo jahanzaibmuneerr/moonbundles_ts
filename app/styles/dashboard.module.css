@@ -66,14 +66,8 @@
 }
 
 /* ==========================================
-   Stage Header & AOV Metric
+   AOV Metric
    ========================================== */
-.stageHeader {
-  background: linear-gradient(to bottom, #f9fafb 0%, #ffffff 100%);
-  padding: 16px;
-  border-radius: 8px;
-}
-
 .aovMetric {
   background: var(--gradient-accent);
   color: var(--color-white);
@@ -199,14 +193,5 @@
   max-width: 160px;
   object-fit: contain;
   filter: brightness(0) invert(1);
-}
-
-.partnerLogoImage {
-  width: 56px;
-  height: 56px;
-  border-radius: 8px;
-  object-fit: cover;
-  border: 1px solid var(--color-gray-200);
-  background: var(--color-white);
 }
 

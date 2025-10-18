@@ -11,7 +11,8 @@ import {
   Button,
   Badge,
   Divider,
-  Box
+  Box,
+  Thumbnail
 } from "@shopify/polaris";
 import styles from "../styles/dashboard.module.css";
 
@@ -135,7 +136,7 @@ export default function Dashboard() {
             <Box width="100%">
             <Card>
               <BlockStack gap="400">
-                <div className={styles.stageHeader}>
+                <Card background="bg-surface-secondary">
                   <BlockStack gap="300">
                     <InlineStack align="space-between" blockAlign="start">
                       <BlockStack gap="200">
@@ -159,7 +160,7 @@ export default function Dashboard() {
                       Capture customer interest with compelling bundles and offers on product pages
                     </Text>
                   </BlockStack>
-                </div>
+                </Card>
 
                 <BlockStack gap="300">
                   {/* Bundles */}
@@ -254,7 +255,7 @@ export default function Dashboard() {
               
               <Card>
                 <BlockStack gap="400">
-                  <div className={styles.stageHeader}>
+                  <Card background="bg-surface-secondary">
                     <BlockStack gap="300">
                       <InlineStack align="space-between" blockAlign="start">
                         <BlockStack gap="200">
@@ -278,7 +279,7 @@ export default function Dashboard() {
                         Increase cart value with strategic upsells and cross-sells in the cart drawer
                       </Text>
                     </BlockStack>
-                  </div>
+                  </Card>
 
                   <div className={styles.teaserContent}>
                     <div className={styles.teaserIcon}>🛒</div>
@@ -320,7 +321,7 @@ export default function Dashboard() {
             <Box width="100%">
             <Card>
               <BlockStack gap="400">
-                <div className={styles.stageHeader}>
+                <Card background="bg-surface-secondary">
                   <BlockStack gap="300">
                     <InlineStack align="space-between" blockAlign="start">
                       <BlockStack gap="200">
@@ -344,7 +345,7 @@ export default function Dashboard() {
                       Maximize revenue with post-purchase upsells and thank you page offers
                     </Text>
                   </BlockStack>
-                </div>
+                </Card>
 
                 <BlockStack gap="300">
                   {/* One-Click Upsells */}
@@ -432,10 +433,10 @@ export default function Dashboard() {
             <Card>
               <BlockStack gap="400">
                 <InlineStack align="space-between">
-                  <img 
-                    src="https://cdn.shopify.com/app-store/listing_images/13484bd181d58bce4fa70e4baa708e2f/icon/CJuBqcmj-IYDEAE=.jpeg" 
+                  <Thumbnail
+                    source="https://cdn.shopify.com/app-store/listing_images/13484bd181d58bce4fa70e4baa708e2f/icon/CJuBqcmj-IYDEAE=.jpeg"
                     alt="DECO Product Labels & Badges"
-                    className={styles.partnerLogoImage}
+                    size="large"
                   />
                   <BlockStack gap="100" align="end">
                     <Text as="p" variant="bodyMd" fontWeight="bold">
@@ -464,10 +465,10 @@ export default function Dashboard() {
             <Card>
               <BlockStack gap="400">
                 <InlineStack align="space-between">
-                  <img 
-                    src="https://cdn.shopify.com/app-store/listing_images/503a9dd92c4f92c285315f35dd858797/icon/CJr3ysaQrIQDEAE=.jpeg" 
+                  <Thumbnail
+                    source="https://cdn.shopify.com/app-store/listing_images/503a9dd92c4f92c285315f35dd858797/icon/CJr3ysaQrIQDEAE=.jpeg"
                     alt="Chazify Product Reviews App"
-                    className={styles.partnerLogoImage}
+                    size="large"
                   />
                   <BlockStack gap="100" align="end">
                     <Text as="p" variant="bodyMd" fontWeight="bold">
