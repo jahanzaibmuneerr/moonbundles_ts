@@ -14,7 +14,6 @@ import {
   Box,
   Thumbnail
 } from "@shopify/polaris";
-import styles from "../styles/dashboard.module.css";
 
 interface LoaderData {
   shopName: string;
@@ -38,7 +37,7 @@ export default function Dashboard() {
           <Card>
             <BlockStack gap="200">
               <Text as="h2" variant="headingLg">
-                Hi, <span className={styles.shopName}>{shopName}</span>! 👋
+                Hi, {shopName}! 👋
               </Text>
               <Text as="p" variant="bodyMd" tone="subdued">
                 Here's your performance overview for today
@@ -72,7 +71,7 @@ export default function Dashboard() {
                 <Card background="bg-surface-secondary">
                   <BlockStack gap="200" align="center">
                     <Text as="p" variant="heading2xl" fontWeight="bold">
-                      <span className={styles.metricValue}>$10,840</span>
+                      $10,840
                     </Text>
                     <Text as="p" variant="bodyMd" tone="subdued">
                       Total Revenue Generated
@@ -86,7 +85,7 @@ export default function Dashboard() {
                 <Card background="bg-surface-secondary">
                   <BlockStack gap="200" align="center">
                     <Text as="p" variant="heading2xl" fontWeight="bold">
-                      <span className={styles.metricValue}>30.2%</span>
+                      30.2%
                     </Text>
                     <Text as="p" variant="bodyMd" tone="subdued">
                       Average AOV Increase
@@ -100,7 +99,7 @@ export default function Dashboard() {
                 <Card background="bg-surface-secondary">
                   <BlockStack gap="200" align="center">
                     <Text as="p" variant="heading2xl" fontWeight="bold">
-                      <span className={styles.metricValue}>2,847</span>
+                      2,847
                     </Text>
                     <Text as="p" variant="bodyMd" tone="subdued">
                       Customers Converted
@@ -114,7 +113,7 @@ export default function Dashboard() {
                 <Card background="bg-surface-secondary">
                   <BlockStack gap="200" align="center">
                     <Text as="p" variant="heading2xl" fontWeight="bold">
-                      <span className={styles.metricValue}>68%</span>
+                      68%
                     </Text>
                     <Text as="p" variant="bodyMd" tone="subdued">
                       Offer Acceptance Rate
@@ -267,7 +266,7 @@ export default function Dashboard() {
                             Cart Page
                           </Text>
                         </BlockStack>
-                        <div className={`${styles.aovMetric} ${styles.aovMetricDisabled}`}>
+                        <Box background="bg-surface-disabled" padding="300" borderRadius="200">
                           <BlockStack gap="050">
                             <Text as="p" variant="headingLg" fontWeight="bold">
                               --
@@ -276,7 +275,7 @@ export default function Dashboard() {
                               AOV Increase
                             </Text>
                           </BlockStack>
-                        </div>
+                        </Box>
                       </InlineStack>
                       <Text as="p" variant="bodyMd" tone="subdued">
                         Increase cart value with strategic upsells and cross-sells in the cart drawer
@@ -417,13 +416,14 @@ export default function Dashboard() {
             <Box width="100%">
             <Card>
               <BlockStack gap="400">
-                <div className={styles.partnerBanner}>
-                  <img 
-                    src="https://www.onially.com/cdn/shop/files/Logo_Onially_noir.png" 
-                    alt="Onially"
-                    className={styles.partnerBannerLogo}
-                  />
-                </div>
+                <Box background="bg-fill-warning" padding="400" borderRadius="200">
+                  <BlockStack gap="200" inlineAlign="center">
+                    <Text as="h3" variant="headingLg" alignment="center">
+                      Onially
+                    </Text>
+                    <Badge>Preferred Partner</Badge>
+                  </BlockStack>
+                </Box>
                 <BlockStack gap="300">
                   <Text as="h3" variant="headingMd">
                     Onially - After-sales service
