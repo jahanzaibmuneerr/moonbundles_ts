@@ -263,7 +263,7 @@ export default function Dashboard() {
                     <BlockStack gap="300">
                       <InlineStack align="space-between" blockAlign="start">
                         <BlockStack gap="200">
-                          <Badge>Stage 2</Badge>
+                          <Badge tone="attention">Stage 2 - INCOMING</Badge>
                           <Text as="h3" variant="headingMd">
                             Cart Page
                           </Text>
@@ -282,18 +282,21 @@ export default function Dashboard() {
                       <Text as="p" variant="bodyMd" tone="subdued">
                         Increase cart value with strategic upsells and cross-sells in the cart drawer
                       </Text>
-                      <InlineStack gap="100" align="center">
-                        <Badge tone="warning">✨ Coming Soon ✨</Badge>
-                      </InlineStack>
+                      <Box paddingBlockStart="200">
+                        <Badge tone="warning">Coming Soon</Badge>
+                      </Box>
                     </BlockStack>
                   </Card>
 
-                  <Box padding="400">
-                    <BlockStack gap="300">
-                      <Text as="p" variant="heading2xl">🛒</Text>
-                      <Text as="h3" variant="bodyLg" fontWeight="semibold">
-                        Powerful Cart Optimization Features
-                      </Text>
+                  <Card background="bg-surface-secondary">
+                    <BlockStack gap="400">
+                      <InlineStack gap="300" align="center" blockAlign="center">
+                        <Text as="p" variant="heading2xl">🛒</Text>
+                        <Text as="h3" variant="headingMd" fontWeight="bold">
+                          Upcoming Cart Features
+                        </Text>
+                      </InlineStack>
+                      
                       <BlockStack gap="200">
                         <InlineStack gap="200" align="start">
                           <Badge tone="success">✓</Badge>
@@ -312,8 +315,14 @@ export default function Dashboard() {
                           <Text as="p" variant="bodyMd">Progressive Discounts</Text>
                         </InlineStack>
                       </BlockStack>
+
+                      <Box paddingBlockStart="200">
+                        <Text as="p" variant="bodySm" tone="subdued" alignment="center">
+                          These powerful features will be available soon
+                        </Text>
+                      </Box>
                     </BlockStack>
-                  </Box>
+                  </Card>
 
                   <Box paddingBlockStart="400">
                     <InlineStack gap="200">
