@@ -435,7 +435,7 @@ export default function Dashboard() {
                       Onially - After-sales service
                     </Text>
                     <Text as="p" variant="bodyMd" tone="subdued">
-                      Professional customer service for e-commerce: brand and dropshipping. Complete management, virtual assistance, AI solutions. Complete management, virtual assistance, AI solutions.
+                      Professional customer service for e-commerce: brand and dropshipping. Complete management, virtual assistance, AI solutions.
                     </Text>
                     <Button>View App</Button>
                   </BlockStack>
@@ -467,7 +467,7 @@ export default function Dashboard() {
                       DECO Product Labels & Badges
                     </Text>
                     <Text as="p" variant="bodyMd" tone="subdued">
-                      Boost sales with eye-catching badges, product labels & banner bars.
+                      Boost sales with eye-catching badges, product labels & banner bars. Complete management, virtual assistance, AI solutions.
                     </Text>
                     <Button>View App</Button>
                   </BlockStack>
