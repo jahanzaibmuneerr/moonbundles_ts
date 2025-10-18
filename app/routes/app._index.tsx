@@ -46,16 +46,18 @@ export default function Dashboard() {
             </BlockStack>
           </Card>
 
-          <div className={styles.hero}>
-            <BlockStack gap="200">
-              <Text as="h1" variant="heading2xl" alignment="center">
-                Maximize Your Revenue Across the Customer Journey
-              </Text>
-              <Text as="p" variant="bodyLg" alignment="center" tone="subdued">
-                Drive conversions at every stage: Before Add to Cart, During Cart, and After Purchase
-              </Text>
-            </BlockStack>
-          </div>
+          <Box width="100%">
+            <Card background="bg-fill-info">
+              <BlockStack gap="200">
+                <Text as="h1" variant="heading2xl" alignment="center">
+                  Maximize Your Revenue Across the Customer Journey
+                </Text>
+                <Text as="p" variant="bodyLg" alignment="center">
+                  Drive conversions at every stage: Before Add to Cart, During Cart, and After Purchase
+                </Text>
+              </BlockStack>
+            </Card>
+          </Box>
         </InlineStack>
 
         {/* Performance Overview Section */}
@@ -75,7 +77,7 @@ export default function Dashboard() {
                     <Text as="p" variant="bodyMd" tone="subdued">
                       Total Revenue Generated
                     </Text>
-                    <span className={styles.metricTrend}>↑ 24% vs last month</span>
+                    <Badge tone="success">↑ 24% vs last month</Badge>
                   </BlockStack>
                 </Card>
               </Box>
@@ -89,7 +91,7 @@ export default function Dashboard() {
                     <Text as="p" variant="bodyMd" tone="subdued">
                       Average AOV Increase
                     </Text>
-                    <span className={styles.metricTrend}>↑ 5.3% vs last month</span>
+                    <Badge tone="success">↑ 5.3% vs last month</Badge>
                   </BlockStack>
                 </Card>
               </Box>
@@ -103,7 +105,7 @@ export default function Dashboard() {
                     <Text as="p" variant="bodyMd" tone="subdued">
                       Customers Converted
                     </Text>
-                    <span className={styles.metricTrend}>↑ 18% vs last month</span>
+                    <Badge tone="success">↑ 18% vs last month</Badge>
                   </BlockStack>
                 </Card>
               </Box>
@@ -117,7 +119,7 @@ export default function Dashboard() {
                     <Text as="p" variant="bodyMd" tone="subdued">
                       Offer Acceptance Rate
                     </Text>
-                    <span className={styles.metricTrend}>↑ 3% vs last month</span>
+                    <Badge tone="success">↑ 3% vs last month</Badge>
                   </BlockStack>
                 </Card>
               </Box>
@@ -145,7 +147,7 @@ export default function Dashboard() {
                           Before Add to Cart
                         </Text>
                       </BlockStack>
-                      <div className={styles.aovMetric}>
+                      <Box background="bg-fill-warning" padding="300" borderRadius="200">
                         <BlockStack gap="050">
                           <Text as="p" variant="headingLg" fontWeight="bold">
                             +28.5%
@@ -154,7 +156,7 @@ export default function Dashboard() {
                             AOV Increase
                           </Text>
                         </BlockStack>
-                      </div>
+                      </Box>
                     </InlineStack>
                     <Text as="p" variant="bodyMd" tone="subdued">
                       Capture customer interest with compelling bundles and offers on product pages
@@ -166,7 +168,9 @@ export default function Dashboard() {
                   {/* Bundles */}
                   <Card background="bg-surface-secondary">
                     <InlineStack gap="300" align="start">
-                      <div className={styles.offerIcon}>📦</div>
+                      <Box background="bg-surface" padding="300" borderRadius="200">
+                        <Text as="p" variant="headingLg">📦</Text>
+                      </Box>
                       <BlockStack gap="200">
                         <Text as="h4" variant="bodyLg" fontWeight="semibold">
                           Bundles
@@ -184,7 +188,9 @@ export default function Dashboard() {
                   {/* Free Gifts */}
                   <Card background="bg-surface-secondary">
                     <InlineStack gap="300" align="start">
-                      <div className={styles.offerIcon}>🎁</div>
+                      <Box background="bg-surface" padding="300" borderRadius="200">
+                        <Text as="p" variant="headingLg">🎁</Text>
+                      </Box>
                       <BlockStack gap="200">
                         <Text as="h4" variant="bodyLg" fontWeight="semibold">
                           Free Gifts
@@ -202,7 +208,9 @@ export default function Dashboard() {
                   {/* Add-ons */}
                   <Card background="bg-surface-secondary">
                     <InlineStack gap="300" align="start">
-                      <div className={styles.offerIcon}>➕</div>
+                      <Box background="bg-surface" padding="300" borderRadius="200">
+                        <Text as="p" variant="headingLg">➕</Text>
+                      </Box>
                       <BlockStack gap="200">
                         <Text as="h4" variant="bodyLg" fontWeight="semibold">
                           Add-ons
@@ -220,7 +228,9 @@ export default function Dashboard() {
                   {/* Quantity Breaks */}
                   <Card background="bg-surface-secondary">
                     <InlineStack gap="300" align="start">
-                      <div className={styles.offerIcon}>📊</div>
+                      <Box background="bg-surface" padding="300" borderRadius="200">
+                        <Text as="p" variant="headingLg">📊</Text>
+                      </Box>
                       <BlockStack gap="200">
                         <Text as="h4" variant="bodyLg" fontWeight="semibold">
                           Quantity Breaks
@@ -246,13 +256,6 @@ export default function Dashboard() {
 
             {/* Stage 2: Cart - COMING SOON */}
             <Box width="100%">
-            <div className={styles.comingSoonCard}>
-              <div className={styles.comingSoonBadge}>
-                <span className={styles.sparkle}>✨</span>
-                Coming Soon
-                <span className={styles.sparkle}>✨</span>
-              </div>
-              
               <Card>
                 <BlockStack gap="400">
                   <Card background="bg-surface-secondary">
@@ -278,35 +281,38 @@ export default function Dashboard() {
                       <Text as="p" variant="bodyMd" tone="subdued">
                         Increase cart value with strategic upsells and cross-sells in the cart drawer
                       </Text>
+                      <InlineStack gap="100" align="center">
+                        <Badge tone="warning">✨ Coming Soon ✨</Badge>
+                      </InlineStack>
                     </BlockStack>
                   </Card>
 
-                  <div className={styles.teaserContent}>
-                    <div className={styles.teaserIcon}>🛒</div>
+                  <Box padding="400">
                     <BlockStack gap="300">
-                      <Text as="h3" variant="bodyLg" fontWeight="semibold" alignment="center">
+                      <Text as="p" variant="heading2xl">🛒</Text>
+                      <Text as="h3" variant="bodyLg" fontWeight="semibold">
                         Powerful Cart Optimization Features
                       </Text>
                       <BlockStack gap="200">
                         <InlineStack gap="200" align="start">
-                          <span className={styles.checkmark}>✓</span>
+                          <Badge tone="success">✓</Badge>
                           <Text as="p" variant="bodyMd">Cart Drawer Upsells</Text>
                         </InlineStack>
                         <InlineStack gap="200" align="start">
-                          <span className={styles.checkmark}>✓</span>
+                          <Badge tone="success">✓</Badge>
                           <Text as="p" variant="bodyMd">Smart Cross-Sells</Text>
                         </InlineStack>
                         <InlineStack gap="200" align="start">
-                          <span className={styles.checkmark}>✓</span>
+                          <Badge tone="success">✓</Badge>
                           <Text as="p" variant="bodyMd">Order Bumps</Text>
                         </InlineStack>
                         <InlineStack gap="200" align="start">
-                          <span className={styles.checkmark}>✓</span>
+                          <Badge tone="success">✓</Badge>
                           <Text as="p" variant="bodyMd">Progressive Discounts</Text>
                         </InlineStack>
                       </BlockStack>
                     </BlockStack>
-                  </div>
+                  </Box>
 
                   <InlineStack gap="200">
                     <Button variant="primary" disabled>+ New Cart Offer</Button>
@@ -314,7 +320,6 @@ export default function Dashboard() {
                   </InlineStack>
                 </BlockStack>
               </Card>
-            </div>
             </Box>
 
             {/* Stage 3: After Add to Cart */}
@@ -330,7 +335,7 @@ export default function Dashboard() {
                           After Add to Cart
                         </Text>
                       </BlockStack>
-                      <div className={styles.aovMetric}>
+                      <Box background="bg-fill-warning" padding="300" borderRadius="200">
                         <BlockStack gap="050">
                           <Text as="p" variant="headingLg" fontWeight="bold">
                             +32.8%
@@ -339,7 +344,7 @@ export default function Dashboard() {
                             AOV Increase
                           </Text>
                         </BlockStack>
-                      </div>
+                      </Box>
                     </InlineStack>
                     <Text as="p" variant="bodyMd" tone="subdued">
                       Maximize revenue with post-purchase upsells and thank you page offers
@@ -351,7 +356,9 @@ export default function Dashboard() {
                   {/* One-Click Upsells */}
                   <Card background="bg-surface-secondary">
                     <InlineStack gap="300" align="start">
-                      <div className={styles.offerIcon}>⚡</div>
+                      <Box background="bg-surface" padding="300" borderRadius="200">
+                        <Text as="p" variant="headingLg">⚡</Text>
+                      </Box>
                       <BlockStack gap="200">
                         <Text as="h4" variant="bodyLg" fontWeight="semibold">
                           One-Click Upsells
@@ -369,7 +376,9 @@ export default function Dashboard() {
                   {/* Thank You Page Offers */}
                   <Card background="bg-surface-secondary">
                     <InlineStack gap="300" align="start">
-                      <div className={styles.offerIcon}>🎉</div>
+                      <Box background="bg-surface" padding="300" borderRadius="200">
+                        <Text as="p" variant="headingLg">🎉</Text>
+                      </Box>
                       <BlockStack gap="200">
                         <Text as="h4" variant="bodyLg" fontWeight="semibold">
                           Thank You Page Offers
@@ -440,7 +449,7 @@ export default function Dashboard() {
                   />
                   <BlockStack gap="100" align="end">
                     <Text as="p" variant="bodyMd" fontWeight="bold">
-                      <span style={{ color: '#f77709' }}>★★★★★</span>
+                      ⭐⭐⭐⭐⭐
                     </Text>
                     <Text as="p" variant="bodySm" tone="subdued">
                       4.9 (781 Reviews)
@@ -472,7 +481,7 @@ export default function Dashboard() {
                   />
                   <BlockStack gap="100" align="end">
                     <Text as="p" variant="bodyMd" fontWeight="bold">
-                      <span style={{ color: '#f77709' }}>★★★★★</span>
+                      ⭐⭐⭐⭐⭐
                     </Text>
                     <Text as="p" variant="bodySm" tone="subdued">
                       5.0 (27 Reviews)
