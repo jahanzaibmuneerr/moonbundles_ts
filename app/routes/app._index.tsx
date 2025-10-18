@@ -1,251 +1,499 @@
-import { useEffect } from "react";
-import type {
-  ActionFunctionArgs,
-  HeadersFunction,
-  LoaderFunctionArgs,
-} from "react-router";
-import { useFetcher } from "react-router";
-import { useAppBridge } from "@shopify/app-bridge-react";
-import { authenticate } from "../shopify.server";
+import type { HeadersFunction, LoaderFunctionArgs } from "react-router";
+import { useLoaderData } from "react-router";
 import { boundary } from "@shopify/shopify-app-react-router/server";
+import { authenticate } from "../shopify.server";
+import { 
+  Page, 
+  Card, 
+  Text, 
+  BlockStack,
+  InlineStack,
+  Button,
+  Badge,
+  Divider,
+  Box
+} from "@shopify/polaris";
+import styles from "../styles/dashboard.module.css";
+
+interface LoaderData {
+  shopName: string;
+}
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
-  await authenticate.admin(request);
-
-  return null;
+  const { session } = await authenticate.admin(request);
+  const shopName = session.shop.replace('.myshopify.com', '');
+  
+  return { shopName };
 };
 
-export const action = async ({ request }: ActionFunctionArgs) => {
-  const { admin } = await authenticate.admin(request);
-  const color = ["Red", "Orange", "Yellow", "Green"][
-    Math.floor(Math.random() * 4)
-  ];
-  const response = await admin.graphql(
-    `#graphql
-      mutation populateProduct($product: ProductCreateInput!) {
-        productCreate(product: $product) {
-          product {
-            id
-            title
-            handle
-            status
-            variants(first: 10) {
-              edges {
-                node {
-                  id
-                  price
-                  barcode
-                  createdAt
-                }
-              }
-            }
-          }
-        }
-      }`,
-    {
-      variables: {
-        product: {
-          title: `${color} Snowboard`,
-        },
-      },
-    },
-  );
-  const responseJson = await response.json();
-
-  const product = responseJson.data!.productCreate!.product!;
-  const variantId = product.variants.edges[0]!.node!.id!;
-
-  const variantResponse = await admin.graphql(
-    `#graphql
-    mutation shopifyReactRouterTemplateUpdateVariant($productId: ID!, $variants: [ProductVariantsBulkInput!]!) {
-      productVariantsBulkUpdate(productId: $productId, variants: $variants) {
-        productVariants {
-          id
-          price
-          barcode
-          createdAt
-        }
-      }
-    }`,
-    {
-      variables: {
-        productId: product.id,
-        variants: [{ id: variantId, price: "100.00" }],
-      },
-    },
-  );
-
-  const variantResponseJson = await variantResponse.json();
-
-  return {
-    product: responseJson!.data!.productCreate!.product,
-    variant:
-      variantResponseJson!.data!.productVariantsBulkUpdate!.productVariants,
-  };
-};
-
-export default function Index() {
-  const fetcher = useFetcher<typeof action>();
-
-  const shopify = useAppBridge();
-  const isLoading =
-    ["loading", "submitting"].includes(fetcher.state) &&
-    fetcher.formMethod === "POST";
-
-  useEffect(() => {
-    if (fetcher.data?.product?.id) {
-      shopify.toast.show("Product created");
-    }
-  }, [fetcher.data?.product?.id, shopify]);
-
-  const generateProduct = () => fetcher.submit({}, { method: "POST" });
+export default function Dashboard() {
+  const { shopName } = useLoaderData<LoaderData>();
 
   return (
-    <s-page heading="Shopify app template">
-      <s-button slot="primary-action" onClick={generateProduct}>
-        Generate a product
-      </s-button>
+    <Page fullWidth>
+      <BlockStack gap="500">
+        {/* Header Row: Greeting + Hero */}
+        <InlineStack gap="400" wrap={false}>
+          <Card>
+            <BlockStack gap="200">
+              <Text as="h2" variant="headingLg">
+                Hi, <span className={styles.shopName}>{shopName}</span>! 👋
+              </Text>
+              <Text as="p" variant="bodyMd" tone="subdued">
+                Here's your performance overview for today
+              </Text>
+            </BlockStack>
+          </Card>
 
-      <s-section heading="Congrats on creating a new Shopify app 🎉">
-        <s-paragraph>
-          This embedded app template uses{" "}
-          <s-link
-            href="https://shopify.dev/docs/apps/tools/app-bridge"
-            target="_blank"
-          >
-            App Bridge
-          </s-link>{" "}
-          interface examples like an{" "}
-          <s-link href="/app/additional">additional page in the app nav</s-link>
-          , as well as an{" "}
-          <s-link
-            href="https://shopify.dev/docs/api/admin-graphql"
-            target="_blank"
-          >
-            Admin GraphQL
-          </s-link>{" "}
-          mutation demo, to provide a starting point for app development.
-        </s-paragraph>
-      </s-section>
-      <s-section heading="Get started with products">
-        <s-paragraph>
-          Generate a product with GraphQL and get the JSON output for that
-          product. Learn more about the{" "}
-          <s-link
-            href="https://shopify.dev/docs/api/admin-graphql/latest/mutations/productCreate"
-            target="_blank"
-          >
-            productCreate
-          </s-link>{" "}
-          mutation in our API references.
-        </s-paragraph>
-        <s-stack direction="inline" gap="base">
-          <s-button
-            onClick={generateProduct}
-            {...(isLoading ? { loading: true } : {})}
-          >
-            Generate a product
-          </s-button>
-          {fetcher.data?.product && (
-            <s-button
-              onClick={() => {
-                shopify.intents.invoke?.("edit:shopify/Product", {
-                  value: fetcher.data?.product?.id,
-                });
-              }}
-              target="_blank"
-              variant="tertiary"
-            >
-              Edit product
-            </s-button>
-          )}
-        </s-stack>
-        {fetcher.data?.product && (
-          <s-section heading="productCreate mutation">
-            <s-stack direction="block" gap="base">
-              <s-box
-                padding="base"
-                borderWidth="base"
-                borderRadius="base"
-                background="subdued"
-              >
-                <pre style={{ margin: 0 }}>
-                  <code>{JSON.stringify(fetcher.data.product, null, 2)}</code>
-                </pre>
-              </s-box>
+          <div className={styles.hero}>
+            <BlockStack gap="200">
+              <Text as="h1" variant="heading2xl" alignment="center">
+                Maximize Your Revenue Across the Customer Journey
+              </Text>
+              <Text as="p" variant="bodyLg" alignment="center" tone="subdued">
+                Drive conversions at every stage: Before Add to Cart, During Cart, and After Purchase
+              </Text>
+            </BlockStack>
+          </div>
+        </InlineStack>
 
-              <s-heading>productVariantsBulkUpdate mutation</s-heading>
-              <s-box
-                padding="base"
-                borderWidth="base"
-                borderRadius="base"
-                background="subdued"
-              >
-                <pre style={{ margin: 0 }}>
-                  <code>{JSON.stringify(fetcher.data.variant, null, 2)}</code>
-                </pre>
-              </s-box>
-            </s-stack>
-          </s-section>
-        )}
-      </s-section>
+        {/* Performance Overview Section */}
+        <Card>
+          <BlockStack gap="400">
+            <Text as="h2" variant="headingLg" alignment="center">
+              Performance Statistics
+            </Text>
+            
+            <InlineStack gap="400" wrap={false}>
+              <Box width="100%">
+                <Card background="bg-surface-secondary">
+                  <BlockStack gap="200" align="center">
+                    <Text as="p" variant="heading2xl" fontWeight="bold">
+                      <span className={styles.metricValue}>$10,840</span>
+                    </Text>
+                    <Text as="p" variant="bodyMd" tone="subdued">
+                      Total Revenue Generated
+                    </Text>
+                    <span className={styles.metricTrend}>↑ 24% vs last month</span>
+                  </BlockStack>
+                </Card>
+              </Box>
 
-      <s-section slot="aside" heading="App template specs">
-        <s-paragraph>
-          <s-text>Framework: </s-text>
-          <s-link href="https://reactrouter.com/" target="_blank">
-            React Router
-          </s-link>
-        </s-paragraph>
-        <s-paragraph>
-          <s-text>Interface: </s-text>
-          <s-link
-            href="https://shopify.dev/docs/api/app-home/using-polaris-components"
-            target="_blank"
-          >
-            Polaris web components
-          </s-link>
-        </s-paragraph>
-        <s-paragraph>
-          <s-text>API: </s-text>
-          <s-link
-            href="https://shopify.dev/docs/api/admin-graphql"
-            target="_blank"
-          >
-            GraphQL
-          </s-link>
-        </s-paragraph>
-        <s-paragraph>
-          <s-text>Database: </s-text>
-          <s-link href="https://www.prisma.io/" target="_blank">
-            Prisma
-          </s-link>
-        </s-paragraph>
-      </s-section>
+              <Box width="100%">
+                <Card background="bg-surface-secondary">
+                  <BlockStack gap="200" align="center">
+                    <Text as="p" variant="heading2xl" fontWeight="bold">
+                      <span className={styles.metricValue}>30.2%</span>
+                    </Text>
+                    <Text as="p" variant="bodyMd" tone="subdued">
+                      Average AOV Increase
+                    </Text>
+                    <span className={styles.metricTrend}>↑ 5.3% vs last month</span>
+                  </BlockStack>
+                </Card>
+              </Box>
 
-      <s-section slot="aside" heading="Next steps">
-        <s-unordered-list>
-          <s-list-item>
-            Build an{" "}
-            <s-link
-              href="https://shopify.dev/docs/apps/getting-started/build-app-example"
-              target="_blank"
-            >
-              example app
-            </s-link>
-          </s-list-item>
-          <s-list-item>
-            Explore Shopify&apos;s API with{" "}
-            <s-link
-              href="https://shopify.dev/docs/apps/tools/graphiql-admin-api"
-              target="_blank"
-            >
-              GraphiQL
-            </s-link>
-          </s-list-item>
-        </s-unordered-list>
-      </s-section>
-    </s-page>
+              <Box width="100%">
+                <Card background="bg-surface-secondary">
+                  <BlockStack gap="200" align="center">
+                    <Text as="p" variant="heading2xl" fontWeight="bold">
+                      <span className={styles.metricValue}>2,847</span>
+                    </Text>
+                    <Text as="p" variant="bodyMd" tone="subdued">
+                      Customers Converted
+                    </Text>
+                    <span className={styles.metricTrend}>↑ 18% vs last month</span>
+                  </BlockStack>
+                </Card>
+              </Box>
+
+              <Box width="100%">
+                <Card background="bg-surface-secondary">
+                  <BlockStack gap="200" align="center">
+                    <Text as="p" variant="heading2xl" fontWeight="bold">
+                      <span className={styles.metricValue}>68%</span>
+                    </Text>
+                    <Text as="p" variant="bodyMd" tone="subdued">
+                      Offer Acceptance Rate
+                    </Text>
+                    <span className={styles.metricTrend}>↑ 3% vs last month</span>
+                  </BlockStack>
+                </Card>
+              </Box>
+            </InlineStack>
+          </BlockStack>
+        </Card>
+
+        {/* Funnel Stages Section */}
+        <BlockStack gap="400">
+          <Text as="h2" variant="headingLg" alignment="center">
+            Revenue Optimization Stages
+          </Text>
+
+          <InlineStack gap="400" wrap={false}>
+            {/* Stage 1: Before Add to Cart */}
+            <Box width="100%">
+            <Card>
+              <BlockStack gap="400">
+                <div className={styles.stageHeader}>
+                  <BlockStack gap="300">
+                    <InlineStack align="space-between" blockAlign="start">
+                      <BlockStack gap="200">
+                        <Badge tone="info">Stage 1</Badge>
+                        <Text as="h3" variant="headingMd">
+                          Before Add to Cart
+                        </Text>
+                      </BlockStack>
+                      <div className={styles.aovMetric}>
+                        <BlockStack gap="050">
+                          <Text as="p" variant="headingLg" fontWeight="bold">
+                            +28.5%
+                          </Text>
+                          <Text as="p" variant="bodySm">
+                            AOV Increase
+                          </Text>
+                        </BlockStack>
+                      </div>
+                    </InlineStack>
+                    <Text as="p" variant="bodyMd" tone="subdued">
+                      Capture customer interest with compelling bundles and offers on product pages
+                    </Text>
+                  </BlockStack>
+                </div>
+
+                <BlockStack gap="300">
+                  {/* Bundles */}
+                  <Card background="bg-surface-secondary">
+                    <InlineStack gap="300" align="start">
+                      <div className={styles.offerIcon}>📦</div>
+                      <BlockStack gap="200">
+                        <Text as="h4" variant="bodyLg" fontWeight="semibold">
+                          Bundles
+                        </Text>
+                        <InlineStack gap="200" align="start">
+                          <Badge>5 active</Badge>
+                          <Text as="span" variant="bodyLg" fontWeight="bold" tone="success">
+                            $2,450
+                          </Text>
+                        </InlineStack>
+                      </BlockStack>
+                    </InlineStack>
+                  </Card>
+
+                  {/* Free Gifts */}
+                  <Card background="bg-surface-secondary">
+                    <InlineStack gap="300" align="start">
+                      <div className={styles.offerIcon}>🎁</div>
+                      <BlockStack gap="200">
+                        <Text as="h4" variant="bodyLg" fontWeight="semibold">
+                          Free Gifts
+                        </Text>
+                        <InlineStack gap="200" align="start">
+                          <Badge>3 active</Badge>
+                          <Text as="span" variant="bodyLg" fontWeight="bold" tone="success">
+                            $890
+                          </Text>
+                        </InlineStack>
+                      </BlockStack>
+                    </InlineStack>
+                  </Card>
+
+                  {/* Add-ons */}
+                  <Card background="bg-surface-secondary">
+                    <InlineStack gap="300" align="start">
+                      <div className={styles.offerIcon}>➕</div>
+                      <BlockStack gap="200">
+                        <Text as="h4" variant="bodyLg" fontWeight="semibold">
+                          Add-ons
+                        </Text>
+                        <InlineStack gap="200" align="start">
+                          <Badge>2 active</Badge>
+                          <Text as="span" variant="bodyLg" fontWeight="bold" tone="success">
+                            $650
+                          </Text>
+                        </InlineStack>
+                      </BlockStack>
+                    </InlineStack>
+                  </Card>
+
+                  {/* Quantity Breaks */}
+                  <Card background="bg-surface-secondary">
+                    <InlineStack gap="300" align="start">
+                      <div className={styles.offerIcon}>📊</div>
+                      <BlockStack gap="200">
+                        <Text as="h4" variant="bodyLg" fontWeight="semibold">
+                          Quantity Breaks
+                        </Text>
+                        <InlineStack gap="200" align="start">
+                          <Badge>2 active</Badge>
+                          <Text as="span" variant="bodyLg" fontWeight="bold" tone="success">
+                            $1,200
+                          </Text>
+                        </InlineStack>
+                      </BlockStack>
+                    </InlineStack>
+                  </Card>
+                </BlockStack>
+
+                <InlineStack gap="200">
+                  <Button variant="primary">+ New Bundle</Button>
+                  <Button>View All</Button>
+                </InlineStack>
+              </BlockStack>
+            </Card>
+            </Box>
+
+            {/* Stage 2: Cart - COMING SOON */}
+            <Box width="100%">
+            <div className={styles.comingSoonCard}>
+              <div className={styles.comingSoonBadge}>
+                <span className={styles.sparkle}>✨</span>
+                Coming Soon
+                <span className={styles.sparkle}>✨</span>
+              </div>
+              
+              <Card>
+                <BlockStack gap="400">
+                  <div className={styles.stageHeader}>
+                    <BlockStack gap="300">
+                      <InlineStack align="space-between" blockAlign="start">
+                        <BlockStack gap="200">
+                          <Badge>Stage 2</Badge>
+                          <Text as="h3" variant="headingMd">
+                            Cart Page
+                          </Text>
+                        </BlockStack>
+                        <div className={`${styles.aovMetric} ${styles.aovMetricDisabled}`}>
+                          <BlockStack gap="050">
+                            <Text as="p" variant="headingLg" fontWeight="bold">
+                              --
+                            </Text>
+                            <Text as="p" variant="bodySm">
+                              AOV Increase
+                            </Text>
+                          </BlockStack>
+                        </div>
+                      </InlineStack>
+                      <Text as="p" variant="bodyMd" tone="subdued">
+                        Increase cart value with strategic upsells and cross-sells in the cart drawer
+                      </Text>
+                    </BlockStack>
+                  </div>
+
+                  <div className={styles.teaserContent}>
+                    <div className={styles.teaserIcon}>🛒</div>
+                    <BlockStack gap="300">
+                      <Text as="h3" variant="bodyLg" fontWeight="semibold" alignment="center">
+                        Powerful Cart Optimization Features
+                      </Text>
+                      <BlockStack gap="200">
+                        <InlineStack gap="200" align="start">
+                          <span className={styles.checkmark}>✓</span>
+                          <Text as="p" variant="bodyMd">Cart Drawer Upsells</Text>
+                        </InlineStack>
+                        <InlineStack gap="200" align="start">
+                          <span className={styles.checkmark}>✓</span>
+                          <Text as="p" variant="bodyMd">Smart Cross-Sells</Text>
+                        </InlineStack>
+                        <InlineStack gap="200" align="start">
+                          <span className={styles.checkmark}>✓</span>
+                          <Text as="p" variant="bodyMd">Order Bumps</Text>
+                        </InlineStack>
+                        <InlineStack gap="200" align="start">
+                          <span className={styles.checkmark}>✓</span>
+                          <Text as="p" variant="bodyMd">Progressive Discounts</Text>
+                        </InlineStack>
+                      </BlockStack>
+                    </BlockStack>
+                  </div>
+
+                  <InlineStack gap="200">
+                    <Button variant="primary" disabled>+ New Cart Offer</Button>
+                    <Button disabled>View All</Button>
+                  </InlineStack>
+                </BlockStack>
+              </Card>
+            </div>
+            </Box>
+
+            {/* Stage 3: After Add to Cart */}
+            <Box width="100%">
+            <Card>
+              <BlockStack gap="400">
+                <div className={styles.stageHeader}>
+                  <BlockStack gap="300">
+                    <InlineStack align="space-between" blockAlign="start">
+                      <BlockStack gap="200">
+                        <Badge tone="success">Stage 3</Badge>
+                        <Text as="h3" variant="headingMd">
+                          After Add to Cart
+                        </Text>
+                      </BlockStack>
+                      <div className={styles.aovMetric}>
+                        <BlockStack gap="050">
+                          <Text as="p" variant="headingLg" fontWeight="bold">
+                            +32.8%
+                          </Text>
+                          <Text as="p" variant="bodySm">
+                            AOV Increase
+                          </Text>
+                        </BlockStack>
+                      </div>
+                    </InlineStack>
+                    <Text as="p" variant="bodyMd" tone="subdued">
+                      Maximize revenue with post-purchase upsells and thank you page offers
+                    </Text>
+                  </BlockStack>
+                </div>
+
+                <BlockStack gap="300">
+                  {/* One-Click Upsells */}
+                  <Card background="bg-surface-secondary">
+                    <InlineStack gap="300" align="start">
+                      <div className={styles.offerIcon}>⚡</div>
+                      <BlockStack gap="200">
+                        <Text as="h4" variant="bodyLg" fontWeight="semibold">
+                          One-Click Upsells
+                        </Text>
+                        <InlineStack gap="200" align="start">
+                          <Badge>5 active</Badge>
+                          <Text as="span" variant="bodyLg" fontWeight="bold" tone="success">
+                            $3,200
+                          </Text>
+                        </InlineStack>
+                      </BlockStack>
+                    </InlineStack>
+                  </Card>
+
+                  {/* Thank You Page Offers */}
+                  <Card background="bg-surface-secondary">
+                    <InlineStack gap="300" align="start">
+                      <div className={styles.offerIcon}>🎉</div>
+                      <BlockStack gap="200">
+                        <Text as="h4" variant="bodyLg" fontWeight="semibold">
+                          Thank You Page Offers
+                        </Text>
+                        <InlineStack gap="200" align="start">
+                          <Badge>3 active</Badge>
+                          <Text as="span" variant="bodyLg" fontWeight="bold" tone="success">
+                            $1,450
+                          </Text>
+                        </InlineStack>
+                      </BlockStack>
+                    </InlineStack>
+                  </Card>
+                </BlockStack>
+
+                <InlineStack gap="200">
+                  <Button variant="primary">+ New Offer</Button>
+                  <Button>View All</Button>
+                </InlineStack>
+              </BlockStack>
+            </Card>
+            </Box>
+          </InlineStack>
+        </BlockStack>
+
+        {/* Preferred Partners Section */}
+        <Divider />
+        
+        <BlockStack gap="400">
+          <Text as="h2" variant="headingLg" alignment="center">
+            Preferred Partners
+          </Text>
+
+          <InlineStack gap="400" wrap={false}>
+            {/* Partner 1: Onially */}
+            <Box width="100%">
+            <Card>
+              <BlockStack gap="400">
+                <div className={styles.partnerBanner}>
+                  <img 
+                    src="https://www.onially.com/cdn/shop/files/Logo_Onially_noir.png" 
+                    alt="Onially"
+                    className={styles.partnerBannerLogo}
+                  />
+                </div>
+                <BlockStack gap="300">
+                  <Text as="h3" variant="headingMd">
+                    Onially - After-sales service
+                  </Text>
+                  <Text as="p" variant="bodyMd" tone="subdued">
+                    Professional customer service for e-commerce: brand and dropshipping. Complete management, virtual assistance, AI solutions.
+                  </Text>
+                  <Button>View App</Button>
+                </BlockStack>
+              </BlockStack>
+            </Card>
+            </Box>
+
+            {/* Partner 2: DECO */}
+            <Box width="100%">
+            <Card>
+              <BlockStack gap="400">
+                <InlineStack align="space-between">
+                  <img 
+                    src="https://cdn.shopify.com/app-store/listing_images/13484bd181d58bce4fa70e4baa708e2f/icon/CJuBqcmj-IYDEAE=.jpeg" 
+                    alt="DECO Product Labels & Badges"
+                    className={styles.partnerLogoImage}
+                  />
+                  <BlockStack gap="100" align="end">
+                    <Text as="p" variant="bodyMd" fontWeight="bold">
+                      <span style={{ color: '#f77709' }}>★★★★★</span>
+                    </Text>
+                    <Text as="p" variant="bodySm" tone="subdued">
+                      4.9 (781 Reviews)
+                    </Text>
+                  </BlockStack>
+                </InlineStack>
+                <BlockStack gap="300">
+                  <Text as="h3" variant="headingMd">
+                    DECO Product Labels & Badges
+                  </Text>
+                  <Text as="p" variant="bodyMd" tone="subdued">
+                    Boost sales with eye-catching badges, product labels & banner bars.
+                  </Text>
+                  <Button>View App</Button>
+                </BlockStack>
+              </BlockStack>
+            </Card>
+            </Box>
+
+            {/* Partner 3: Chazify */}
+            <Box width="100%">
+            <Card>
+              <BlockStack gap="400">
+                <InlineStack align="space-between">
+                  <img 
+                    src="https://cdn.shopify.com/app-store/listing_images/503a9dd92c4f92c285315f35dd858797/icon/CJr3ysaQrIQDEAE=.jpeg" 
+                    alt="Chazify Product Reviews App"
+                    className={styles.partnerLogoImage}
+                  />
+                  <BlockStack gap="100" align="end">
+                    <Text as="p" variant="bodyMd" fontWeight="bold">
+                      <span style={{ color: '#f77709' }}>★★★★★</span>
+                    </Text>
+                    <Text as="p" variant="bodySm" tone="subdued">
+                      5.0 (27 Reviews)
+                    </Text>
+                  </BlockStack>
+                </InlineStack>
+                <BlockStack gap="300">
+                  <Text as="h3" variant="headingMd">
+                    Chazify – Product Reviews App
+                  </Text>
+                  <Text as="p" variant="bodyMd" tone="subdued">
+                    Automate post-purchase reviews with Chazify and display them in fully customizable layouts to build trust and drive repeat sales — Compatible with Hydrogen.
+                  </Text>
+                  <Button>View App</Button>
+                </BlockStack>
+              </BlockStack>
+            </Card>
+            </Box>
+          </InlineStack>
+        </BlockStack>
+      </BlockStack>
+    </Page>
   );
 }
 

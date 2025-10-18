@@ -1,0 +1,212 @@
+/* ==========================================
+   CSS Variables - Moon Bundles Brand
+   ========================================== */
+:root {
+  /* Moon Bundles Brand Colors */
+  --color-brand-navy: #031b4f;
+  --color-brand-blue: #465585;
+  --color-accent: #f77709;
+  --color-accent-dark: #d66508;
+  --color-gray-200: #e5e7eb;
+  --color-white: #ffffff;
+  --color-accent-light: #fff4ec;
+  
+  /* Gradients */
+  --gradient-primary: linear-gradient(135deg, var(--color-brand-navy) 0%, var(--color-brand-blue) 100%);
+  --gradient-accent: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-dark) 100%);
+}
+
+/* ==========================================
+   Greeting Section
+   ========================================== */
+.shopName {
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 700;
+}
+
+/* ==========================================
+   Hero Section
+   ========================================== */
+.hero {
+  background: var(--gradient-primary);
+  border-radius: 12px;
+  padding: 32px 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  box-shadow: 0 4px 20px rgba(3, 27, 79, 0.3);
+}
+
+.hero h1,
+.hero p {
+  color: var(--color-white) !important;
+}
+
+/* ==========================================
+   Metrics
+   ========================================== */
+.metricValue {
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.metricTrend {
+  font-size: 12px;
+  color: var(--color-accent);
+  font-weight: 600;
+  display: inline-block;
+  background: var(--color-accent-light);
+  padding: 4px 10px;
+  border-radius: 6px;
+}
+
+/* ==========================================
+   Stage Header & AOV Metric
+   ========================================== */
+.stageHeader {
+  background: linear-gradient(to bottom, #f9fafb 0%, #ffffff 100%);
+  padding: 16px;
+  border-radius: 8px;
+}
+
+.aovMetric {
+  background: var(--gradient-accent);
+  color: var(--color-white);
+  padding: 12px 16px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(247, 119, 9, 0.3);
+}
+
+.aovMetric p {
+  color: var(--color-white) !important;
+}
+
+.aovMetricDisabled {
+  background: linear-gradient(135deg, #d1d5db 0%, #9ca3af 100%);
+  box-shadow: none;
+}
+
+/* ==========================================
+   Offer Cards
+   ========================================== */
+.offerIcon {
+  font-size: 32px;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-white);
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  flex-shrink: 0;
+}
+
+/* ==========================================
+   Coming Soon Card
+   ========================================== */
+.comingSoonCard {
+  position: relative;
+  opacity: 0.85;
+  transition: opacity 0.3s ease;
+}
+
+.comingSoonCard:hover {
+  opacity: 1;
+}
+
+.comingSoonBadge {
+  position: absolute;
+  top: -10px;
+  right: 12px;
+  background: var(--gradient-accent);
+  color: var(--color-white);
+  padding: 6px 12px;
+  border-radius: 16px;
+  font-size: 11px;
+  font-weight: 600;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  box-shadow: 0 2px 8px rgba(247, 119, 9, 0.4);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+.sparkle {
+  font-size: 12px;
+  animation: sparkle 1.5s ease-in-out infinite;
+}
+
+@keyframes sparkle {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.teaserContent {
+  text-align: center;
+  padding: 24px 16px;
+}
+
+.teaserIcon {
+  font-size: 64px;
+  margin-bottom: 16px;
+  opacity: 0.7;
+}
+
+.checkmark {
+  color: var(--color-accent);
+  font-weight: 700;
+  font-size: 18px;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-accent-light);
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* ==========================================
+   Partners Section
+   ========================================== */
+.partnerBanner {
+  background: var(--gradient-accent);
+  padding: 20px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100px;
+  border-radius: 8px 8px 0 0;
+  margin: -16px -16px 0 -16px;
+}
+
+.partnerBannerLogo {
+  height: 40px;
+  max-width: 160px;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+}
+
+.partnerLogoImage {
+  width: 56px;
+  height: 56px;
+  border-radius: 8px;
+  object-fit: cover;
+  border: 1px solid var(--color-gray-200);
+  background: var(--color-white);
+}
+
