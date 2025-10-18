@@ -135,122 +135,124 @@ export default function Dashboard() {
           <InlineStack gap="400" wrap={false}>
             {/* Stage 1: Before Add to Cart */}
             <Box width="100%">
-            <Card>
-              <BlockStack gap="400">
-                <Card background="bg-surface-secondary">
-                  <BlockStack gap="300">
-                    <InlineStack align="space-between" blockAlign="start">
-                      <BlockStack gap="200">
-                        <Badge tone="info">Stage 1</Badge>
-                        <Text as="h3" variant="headingMd">
-                          Before Add to Cart
-                        </Text>
-                      </BlockStack>
-                      <Box background="bg-fill-warning" padding="300" borderRadius="200">
-                        <BlockStack gap="050">
-                          <Text as="p" variant="headingLg" fontWeight="bold">
-                            +28.5%
-                          </Text>
-                          <Text as="p" variant="bodySm">
-                            AOV Increase
+              <Card>
+                <BlockStack gap="400">
+                  <Card background="bg-surface-secondary">
+                    <BlockStack gap="300">
+                      <InlineStack align="space-between" blockAlign="start">
+                        <BlockStack gap="200">
+                          <Badge tone="info">Stage 1</Badge>
+                          <Text as="h3" variant="headingMd">
+                            Before Add to Cart
                           </Text>
                         </BlockStack>
-                      </Box>
-                    </InlineStack>
-                    <Text as="p" variant="bodyMd" tone="subdued">
-                      Capture customer interest with compelling bundles and offers on product pages
-                    </Text>
+                        <Box background="bg-fill-warning" padding="300" borderRadius="200">
+                          <BlockStack gap="050">
+                            <Text as="p" variant="headingLg" fontWeight="bold">
+                              +28.5%
+                            </Text>
+                            <Text as="p" variant="bodySm">
+                              AOV Increase
+                            </Text>
+                          </BlockStack>
+                        </Box>
+                      </InlineStack>
+                      <Text as="p" variant="bodyMd" tone="subdued">
+                        Capture customer interest with compelling bundles and offers on product pages
+                      </Text>
+                    </BlockStack>
+                  </Card>
+
+                  <BlockStack gap="300">
+                    {/* Bundles */}
+                    <Card background="bg-surface-secondary">
+                      <InlineStack gap="300" align="start">
+                        <Box background="bg-surface" padding="300" borderRadius="200">
+                          <Text as="p" variant="headingLg">📦</Text>
+                        </Box>
+                        <BlockStack gap="200">
+                          <Text as="h4" variant="bodyLg" fontWeight="semibold">
+                            Bundles
+                          </Text>
+                          <InlineStack gap="200" align="start">
+                            <Badge>5 active</Badge>
+                            <Text as="span" variant="bodyLg" fontWeight="bold" tone="success">
+                              $2,450
+                            </Text>
+                          </InlineStack>
+                        </BlockStack>
+                      </InlineStack>
+                    </Card>
+
+                    {/* Free Gifts */}
+                    <Card background="bg-surface-secondary">
+                      <InlineStack gap="300" align="start">
+                        <Box background="bg-surface" padding="300" borderRadius="200">
+                          <Text as="p" variant="headingLg">🎁</Text>
+                        </Box>
+                        <BlockStack gap="200">
+                          <Text as="h4" variant="bodyLg" fontWeight="semibold">
+                            Free Gifts
+                          </Text>
+                          <InlineStack gap="200" align="start">
+                            <Badge>3 active</Badge>
+                            <Text as="span" variant="bodyLg" fontWeight="bold" tone="success">
+                              $890
+                            </Text>
+                          </InlineStack>
+                        </BlockStack>
+                      </InlineStack>
+                    </Card>
+
+                    {/* Add-ons */}
+                    <Card background="bg-surface-secondary">
+                      <InlineStack gap="300" align="start">
+                        <Box background="bg-surface" padding="300" borderRadius="200">
+                          <Text as="p" variant="headingLg">➕</Text>
+                        </Box>
+                        <BlockStack gap="200">
+                          <Text as="h4" variant="bodyLg" fontWeight="semibold">
+                            Add-ons
+                          </Text>
+                          <InlineStack gap="200" align="start">
+                            <Badge>2 active</Badge>
+                            <Text as="span" variant="bodyLg" fontWeight="bold" tone="success">
+                              $650
+                            </Text>
+                          </InlineStack>
+                        </BlockStack>
+                      </InlineStack>
+                    </Card>
+
+                    {/* Quantity Breaks */}
+                    <Card background="bg-surface-secondary">
+                      <InlineStack gap="300" align="start">
+                        <Box background="bg-surface" padding="300" borderRadius="200">
+                          <Text as="p" variant="headingLg">📊</Text>
+                        </Box>
+                        <BlockStack gap="200">
+                          <Text as="h4" variant="bodyLg" fontWeight="semibold">
+                            Quantity Breaks
+                          </Text>
+                          <InlineStack gap="200" align="start">
+                            <Badge>2 active</Badge>
+                            <Text as="span" variant="bodyLg" fontWeight="bold" tone="success">
+                              $1,200
+                            </Text>
+                          </InlineStack>
+                        </BlockStack>
+                      </InlineStack>
+                    </Card>
                   </BlockStack>
-                </Card>
 
-                <BlockStack gap="300">
-                  {/* Bundles */}
-                    <Card background="bg-surface-secondary">
-                      <InlineStack gap="300" align="start">
-                      <Box background="bg-surface" padding="300" borderRadius="200">
-                        <Text as="p" variant="headingLg">📦</Text>
-                      </Box>
-                      <BlockStack gap="200">
-                        <Text as="h4" variant="bodyLg" fontWeight="semibold">
-                          Bundles
-                        </Text>
-                        <InlineStack gap="200" align="start">
-                          <Badge>5 active</Badge>
-                          <Text as="span" variant="bodyLg" fontWeight="bold" tone="success">
-                            $2,450
-                          </Text>
-                        </InlineStack>
-                      </BlockStack>
+                  <Box paddingBlockStart="400">
+                    <InlineStack gap="200">
+                      <Button variant="primary">+ New Bundle</Button>
+                      <Button>View All</Button>
                     </InlineStack>
-                  </Card>
-
-                  {/* Free Gifts */}
-                    <Card background="bg-surface-secondary">
-                      <InlineStack gap="300" align="start">
-                      <Box background="bg-surface" padding="300" borderRadius="200">
-                        <Text as="p" variant="headingLg">🎁</Text>
-                      </Box>
-                      <BlockStack gap="200">
-                        <Text as="h4" variant="bodyLg" fontWeight="semibold">
-                          Free Gifts
-                        </Text>
-                        <InlineStack gap="200" align="start">
-                          <Badge>3 active</Badge>
-                          <Text as="span" variant="bodyLg" fontWeight="bold" tone="success">
-                            $890
-                          </Text>
-                        </InlineStack>
-                      </BlockStack>
-                    </InlineStack>
-                  </Card>
-
-                  {/* Add-ons */}
-                    <Card background="bg-surface-secondary">
-                      <InlineStack gap="300" align="start">
-                      <Box background="bg-surface" padding="300" borderRadius="200">
-                        <Text as="p" variant="headingLg">➕</Text>
-                      </Box>
-                      <BlockStack gap="200">
-                        <Text as="h4" variant="bodyLg" fontWeight="semibold">
-                          Add-ons
-                        </Text>
-                        <InlineStack gap="200" align="start">
-                          <Badge>2 active</Badge>
-                          <Text as="span" variant="bodyLg" fontWeight="bold" tone="success">
-                            $650
-                          </Text>
-                        </InlineStack>
-                      </BlockStack>
-                    </InlineStack>
-                  </Card>
-
-                  {/* Quantity Breaks */}
-                    <Card background="bg-surface-secondary">
-                      <InlineStack gap="300" align="start">
-                      <Box background="bg-surface" padding="300" borderRadius="200">
-                        <Text as="p" variant="headingLg">📊</Text>
-                      </Box>
-                      <BlockStack gap="200">
-                        <Text as="h4" variant="bodyLg" fontWeight="semibold">
-                          Quantity Breaks
-                        </Text>
-                        <InlineStack gap="200" align="start">
-                          <Badge>2 active</Badge>
-                          <Text as="span" variant="bodyLg" fontWeight="bold" tone="success">
-                            $1,200
-                          </Text>
-                        </InlineStack>
-                      </BlockStack>
-                    </InlineStack>
-                  </Card>
+                  </Box>
                 </BlockStack>
-
-                <InlineStack gap="200">
-                  <Button variant="primary">+ New Bundle</Button>
-                  <Button>View All</Button>
-                </InlineStack>
-              </BlockStack>
-            </Card>
+              </Card>
             </Box>
 
             {/* Stage 2: Cart - COMING SOON */}
@@ -313,92 +315,96 @@ export default function Dashboard() {
                     </BlockStack>
                   </Box>
 
-                  <InlineStack gap="200">
-                    <Button variant="primary" disabled>+ New Cart Offer</Button>
-                    <Button disabled>View All</Button>
-                  </InlineStack>
+                  <Box paddingBlockStart="400">
+                    <InlineStack gap="200">
+                      <Button variant="primary" disabled>+ New Cart Offer</Button>
+                      <Button disabled>View All</Button>
+                    </InlineStack>
+                  </Box>
                 </BlockStack>
               </Card>
             </Box>
 
             {/* Stage 3: After Add to Cart */}
             <Box width="100%">
-            <Card>
-              <BlockStack gap="400">
-                <Card background="bg-surface-secondary">
-                  <BlockStack gap="300">
-                    <InlineStack align="space-between" blockAlign="start">
-                      <BlockStack gap="200">
-                        <Badge tone="success">Stage 3</Badge>
-                        <Text as="h3" variant="headingMd">
-                          After Add to Cart
-                        </Text>
-                      </BlockStack>
-                      <Box background="bg-fill-warning" padding="300" borderRadius="200">
-                        <BlockStack gap="050">
-                          <Text as="p" variant="headingLg" fontWeight="bold">
-                            +32.8%
-                          </Text>
-                          <Text as="p" variant="bodySm">
-                            AOV Increase
+              <Card>
+                <BlockStack gap="400">
+                  <Card background="bg-surface-secondary">
+                    <BlockStack gap="300">
+                      <InlineStack align="space-between" blockAlign="start">
+                        <BlockStack gap="200">
+                          <Badge tone="success">Stage 3</Badge>
+                          <Text as="h3" variant="headingMd">
+                            After Add to Cart
                           </Text>
                         </BlockStack>
-                      </Box>
-                    </InlineStack>
-                    <Text as="p" variant="bodyMd" tone="subdued">
-                      Maximize revenue with post-purchase upsells and thank you page offers
-                    </Text>
+                        <Box background="bg-fill-warning" padding="300" borderRadius="200">
+                          <BlockStack gap="050">
+                            <Text as="p" variant="headingLg" fontWeight="bold">
+                              +32.8%
+                            </Text>
+                            <Text as="p" variant="bodySm">
+                              AOV Increase
+                            </Text>
+                          </BlockStack>
+                        </Box>
+                      </InlineStack>
+                      <Text as="p" variant="bodyMd" tone="subdued">
+                        Maximize revenue with post-purchase upsells and thank you page offers
+                      </Text>
+                    </BlockStack>
+                  </Card>
+
+                  <BlockStack gap="300">
+                    {/* One-Click Upsells */}
+                    <Card background="bg-surface-secondary">
+                      <InlineStack gap="300" align="start">
+                        <Box background="bg-surface" padding="300" borderRadius="200">
+                          <Text as="p" variant="headingLg">⚡</Text>
+                        </Box>
+                        <BlockStack gap="200">
+                          <Text as="h4" variant="bodyLg" fontWeight="semibold">
+                            One-Click Upsells
+                          </Text>
+                          <InlineStack gap="200" align="start">
+                            <Badge>5 active</Badge>
+                            <Text as="span" variant="bodyLg" fontWeight="bold" tone="success">
+                              $3,200
+                            </Text>
+                          </InlineStack>
+                        </BlockStack>
+                      </InlineStack>
+                    </Card>
+
+                    {/* Thank You Page Offers */}
+                    <Card background="bg-surface-secondary">
+                      <InlineStack gap="300" align="start">
+                        <Box background="bg-surface" padding="300" borderRadius="200">
+                          <Text as="p" variant="headingLg">🎉</Text>
+                        </Box>
+                        <BlockStack gap="200">
+                          <Text as="h4" variant="bodyLg" fontWeight="semibold">
+                            Thank You Page Offers
+                          </Text>
+                          <InlineStack gap="200" align="start">
+                            <Badge>3 active</Badge>
+                            <Text as="span" variant="bodyLg" fontWeight="bold" tone="success">
+                              $1,450
+                            </Text>
+                          </InlineStack>
+                        </BlockStack>
+                      </InlineStack>
+                    </Card>
                   </BlockStack>
-                </Card>
 
-                <BlockStack gap="300">
-                  {/* One-Click Upsells */}
-                    <Card background="bg-surface-secondary">
-                      <InlineStack gap="300" align="start">
-                      <Box background="bg-surface" padding="300" borderRadius="200">
-                        <Text as="p" variant="headingLg">⚡</Text>
-                      </Box>
-                      <BlockStack gap="200">
-                        <Text as="h4" variant="bodyLg" fontWeight="semibold">
-                          One-Click Upsells
-                        </Text>
-                        <InlineStack gap="200" align="start">
-                          <Badge>5 active</Badge>
-                          <Text as="span" variant="bodyLg" fontWeight="bold" tone="success">
-                            $3,200
-                          </Text>
-                        </InlineStack>
-                      </BlockStack>
+                  <Box paddingBlockStart="400">
+                    <InlineStack gap="200">
+                      <Button variant="primary">+ New Offer</Button>
+                      <Button>View All</Button>
                     </InlineStack>
-                  </Card>
-
-                  {/* Thank You Page Offers */}
-                    <Card background="bg-surface-secondary">
-                      <InlineStack gap="300" align="start">
-                      <Box background="bg-surface" padding="300" borderRadius="200">
-                        <Text as="p" variant="headingLg">🎉</Text>
-                      </Box>
-                      <BlockStack gap="200">
-                        <Text as="h4" variant="bodyLg" fontWeight="semibold">
-                          Thank You Page Offers
-                        </Text>
-                        <InlineStack gap="200" align="start">
-                          <Badge>3 active</Badge>
-                          <Text as="span" variant="bodyLg" fontWeight="bold" tone="success">
-                            $1,450
-                          </Text>
-                        </InlineStack>
-                      </BlockStack>
-                    </InlineStack>
-                  </Card>
+                  </Box>
                 </BlockStack>
-
-                <InlineStack gap="200">
-                  <Button variant="primary">+ New Offer</Button>
-                  <Button>View All</Button>
-                </InlineStack>
-              </BlockStack>
-            </Card>
+              </Card>
             </Box>
           </InlineStack>
         </BlockStack>
@@ -414,91 +420,91 @@ export default function Dashboard() {
           <InlineStack gap="400" wrap={false}>
             {/* Partner 1: Onially */}
             <Box width="100%">
-            <Card>
-              <BlockStack gap="400">
-                <Box background="bg-fill-warning" padding="400" borderRadius="200">
-                  <BlockStack gap="200" inlineAlign="center">
-                    <Text as="h3" variant="headingLg" alignment="center">
-                      Onially
+              <Card>
+                <BlockStack gap="400">
+                  <Box background="bg-fill-warning" padding="400" borderRadius="200">
+                    <BlockStack gap="200" inlineAlign="center">
+                      <Text as="h3" variant="headingLg" alignment="center">
+                        Onially
+                      </Text>
+                      <Badge>Preferred Partner</Badge>
+                    </BlockStack>
+                  </Box>
+                  <BlockStack gap="300">
+                    <Text as="h3" variant="headingMd">
+                      Onially - After-sales service
                     </Text>
-                    <Badge>Preferred Partner</Badge>
+                    <Text as="p" variant="bodyMd" tone="subdued">
+                      Professional customer service for e-commerce: brand and dropshipping. Complete management, virtual assistance, AI solutions. Complete management, virtual assistance, AI solutions.
+                    </Text>
+                    <Button>View App</Button>
                   </BlockStack>
-                </Box>
-                <BlockStack gap="300">
-                  <Text as="h3" variant="headingMd">
-                    Onially - After-sales service
-                  </Text>
-                  <Text as="p" variant="bodyMd" tone="subdued">
-                    Professional customer service for e-commerce: brand and dropshipping. Complete management, virtual assistance, AI solutions.
-                  </Text>
-                  <Button>View App</Button>
                 </BlockStack>
-              </BlockStack>
-            </Card>
+              </Card>
             </Box>
 
             {/* Partner 2: DECO */}
             <Box width="100%">
-            <Card>
-              <BlockStack gap="400">
-                <InlineStack align="space-between">
-                  <Thumbnail
-                    source="https://cdn.shopify.com/app-store/listing_images/13484bd181d58bce4fa70e4baa708e2f/icon/CJuBqcmj-IYDEAE=.jpeg"
-                    alt="DECO Product Labels & Badges"
-                    size="large"
-                  />
-                  <BlockStack gap="100" align="end">
-                    <Text as="p" variant="bodyMd" fontWeight="bold">
-                      ⭐⭐⭐⭐⭐
+              <Card>
+                <BlockStack gap="400">
+                  <InlineStack align="space-between">
+                    <Thumbnail
+                      source="https://cdn.shopify.com/app-store/listing_images/13484bd181d58bce4fa70e4baa708e2f/icon/CJuBqcmj-IYDEAE=.jpeg"
+                      alt="DECO Product Labels & Badges"
+                      size="large"
+                    />
+                    <BlockStack gap="100" align="end">
+                      <Text as="p" variant="bodyMd" fontWeight="bold">
+                        ⭐⭐⭐⭐⭐
+                      </Text>
+                      <Text as="p" variant="bodySm" tone="subdued">
+                        4.9 (781 Reviews)
+                      </Text>
+                    </BlockStack>
+                  </InlineStack>
+                  <BlockStack gap="300">
+                    <Text as="h3" variant="headingMd">
+                      DECO Product Labels & Badges
                     </Text>
-                    <Text as="p" variant="bodySm" tone="subdued">
-                      4.9 (781 Reviews)
+                    <Text as="p" variant="bodyMd" tone="subdued">
+                      Boost sales with eye-catching badges, product labels & banner bars.
                     </Text>
+                    <Button>View App</Button>
                   </BlockStack>
-                </InlineStack>
-                <BlockStack gap="300">
-                  <Text as="h3" variant="headingMd">
-                    DECO Product Labels & Badges
-                  </Text>
-                  <Text as="p" variant="bodyMd" tone="subdued">
-                    Boost sales with eye-catching badges, product labels & banner bars.
-                  </Text>
-                  <Button>View App</Button>
                 </BlockStack>
-              </BlockStack>
-            </Card>
+              </Card>
             </Box>
 
             {/* Partner 3: Chazify */}
             <Box width="100%">
-            <Card>
-              <BlockStack gap="400">
-                <InlineStack align="space-between">
-                  <Thumbnail
-                    source="https://cdn.shopify.com/app-store/listing_images/503a9dd92c4f92c285315f35dd858797/icon/CJr3ysaQrIQDEAE=.jpeg"
-                    alt="Chazify Product Reviews App"
-                    size="large"
-                  />
-                  <BlockStack gap="100" align="end">
-                    <Text as="p" variant="bodyMd" fontWeight="bold">
-                      ⭐⭐⭐⭐⭐
+              <Card>
+                <BlockStack gap="400">
+                  <InlineStack align="space-between">
+                    <Thumbnail
+                      source="https://cdn.shopify.com/app-store/listing_images/503a9dd92c4f92c285315f35dd858797/icon/CJr3ysaQrIQDEAE=.jpeg"
+                      alt="Chazify Product Reviews App"
+                      size="large"
+                    />
+                    <BlockStack gap="100" align="end">
+                      <Text as="p" variant="bodyMd" fontWeight="bold">
+                        ⭐⭐⭐⭐⭐
+                      </Text>
+                      <Text as="p" variant="bodySm" tone="subdued">
+                        5.0 (27 Reviews)
+                      </Text>
+                    </BlockStack>
+                  </InlineStack>
+                  <BlockStack gap="300">
+                    <Text as="h3" variant="headingMd">
+                      Chazify – Product Reviews App
                     </Text>
-                    <Text as="p" variant="bodySm" tone="subdued">
-                      5.0 (27 Reviews)
+                    <Text as="p" variant="bodyMd" tone="subdued">
+                      Automate post-purchase reviews with Chazify and display them in fully customizable layouts to build trust and drive repeat sales — Compatible with Hydrogen.
                     </Text>
+                    <Button>View App</Button>
                   </BlockStack>
-                </InlineStack>
-                <BlockStack gap="300">
-                  <Text as="h3" variant="headingMd">
-                    Chazify – Product Reviews App
-                  </Text>
-                  <Text as="p" variant="bodyMd" tone="subdued">
-                    Automate post-purchase reviews with Chazify and display them in fully customizable layouts to build trust and drive repeat sales — Compatible with Hydrogen.
-                  </Text>
-                  <Button>View App</Button>
                 </BlockStack>
-              </BlockStack>
-            </Card>
+              </Card>
             </Box>
           </InlineStack>
         </BlockStack>
