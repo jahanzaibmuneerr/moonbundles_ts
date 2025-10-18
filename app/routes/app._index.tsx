@@ -165,8 +165,8 @@ export default function Dashboard() {
 
                 <BlockStack gap="300">
                   {/* Bundles */}
-                  <Card background="bg-surface-secondary">
-                    <InlineStack gap="300" align="start">
+                    <Card background="bg-surface-secondary">
+                      <InlineStack gap="300" align="start">
                       <Box background="bg-surface" padding="300" borderRadius="200">
                         <Text as="p" variant="headingLg">📦</Text>
                       </Box>
@@ -185,8 +185,8 @@ export default function Dashboard() {
                   </Card>
 
                   {/* Free Gifts */}
-                  <Card background="bg-surface-secondary">
-                    <InlineStack gap="300" align="start">
+                    <Card background="bg-surface-secondary">
+                      <InlineStack gap="300" align="start">
                       <Box background="bg-surface" padding="300" borderRadius="200">
                         <Text as="p" variant="headingLg">🎁</Text>
                       </Box>
@@ -205,8 +205,8 @@ export default function Dashboard() {
                   </Card>
 
                   {/* Add-ons */}
-                  <Card background="bg-surface-secondary">
-                    <InlineStack gap="300" align="start">
+                    <Card background="bg-surface-secondary">
+                      <InlineStack gap="300" align="start">
                       <Box background="bg-surface" padding="300" borderRadius="200">
                         <Text as="p" variant="headingLg">➕</Text>
                       </Box>
@@ -225,8 +225,8 @@ export default function Dashboard() {
                   </Card>
 
                   {/* Quantity Breaks */}
-                  <Card background="bg-surface-secondary">
-                    <InlineStack gap="300" align="start">
+                    <Card background="bg-surface-secondary">
+                      <InlineStack gap="300" align="start">
                       <Box background="bg-surface" padding="300" borderRadius="200">
                         <Text as="p" variant="headingLg">📊</Text>
                       </Box>
@@ -353,8 +353,8 @@ export default function Dashboard() {
 
                 <BlockStack gap="300">
                   {/* One-Click Upsells */}
-                  <Card background="bg-surface-secondary">
-                    <InlineStack gap="300" align="start">
+                    <Card background="bg-surface-secondary">
+                      <InlineStack gap="300" align="start">
                       <Box background="bg-surface" padding="300" borderRadius="200">
                         <Text as="p" variant="headingLg">⚡</Text>
                       </Box>
@@ -373,8 +373,8 @@ export default function Dashboard() {
                   </Card>
 
                   {/* Thank You Page Offers */}
-                  <Card background="bg-surface-secondary">
-                    <InlineStack gap="300" align="start">
+                    <Card background="bg-surface-secondary">
+                      <InlineStack gap="300" align="start">
                       <Box background="bg-surface" padding="300" borderRadius="200">
                         <Text as="p" variant="headingLg">🎉</Text>
                       </Box>
